@@ -93,10 +93,7 @@ export const AppContextProvider = (props) => {
   // Fetch vault items
   const fetchVaultItems = useCallback(async (masterKey) => {
     if (!isLogged) return;
-      if (masterKey && !await verifyMasterKey(masterKey)) {
-    toast.error('Invalid master key');
-    return;
-  }
+    
   
     setIsLoading(true);
     try {
@@ -134,10 +131,7 @@ const createVaultItem = async (itemData, masterKey) => {
 // Similarly update updateVaultItem and deleteVaultItem to accept masterKey parameter
   // Update vault item
   const updateVaultItem = async (itemId, itemData,masterKey) => {
-     if (!await verifyMasterKey(masterKey)) {
-    toast.error('Invalid master key');
-    return { success: false, error: 'Invalid master key' };
-  }
+  
     try {
       const response = await axios.put(`${backendUrl}/api/vault/items/${itemId}`, itemData);
       if (response.data.success) {
@@ -156,10 +150,7 @@ const createVaultItem = async (itemData, masterKey) => {
 
   // Delete vault item
   const deleteVaultItem = async (itemId,masterKey) => {
-      if (!await verifyMasterKey(masterKey)) {
-    toast.error('Invalid master key');
-    return { success: false, error: 'Invalid master key' };
-  }
+ 
     try {
       const response = await axios.delete(`${backendUrl}/api/vault/items/${itemId}`);
       if (response.data.success) {
