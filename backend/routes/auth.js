@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import { body, validationResult } from 'express-validator';
 import User from '../models/user.js';
+import auth from '../middileware/auth.js';
 dotenv.config();
 
 const router = express.Router();
@@ -167,7 +168,7 @@ router.post('/logout', (req, res) => {
 });
 
 // Check auth
-router.get('/check', async (req, res) => {
+router.get('/check',auth, async (req, res) => {
   try {
     const token = req.cookies.token;
     if (!token) {
