@@ -13,8 +13,8 @@ export const AppContextProvider = (props) => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
 
-  const backendUrl = import.meta.env.VITE_BACKEND_URL;
-
+  const backendUrl = import.meta.env.VITE_BACKEND_URL || 'https://mern-pass.onrender.com';
+  console.log(backendUrl,"lol")
   // Check authentication state
   const checkAuthState = async () => {
     try {
