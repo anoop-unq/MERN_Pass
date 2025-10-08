@@ -11,7 +11,7 @@ router.get('/items', auth, async (req, res) => {
   try {
     const items = await VaultItem.find({ userId: req.userId })
       .sort({ createdAt: -1 });
-    
+    console.log(req.userId,"Fetch")
     res.json({
       success: true,
       items

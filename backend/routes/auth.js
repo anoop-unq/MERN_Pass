@@ -171,6 +171,7 @@ router.post('/logout', (req, res) => {
 router.get('/check',auth, async (req, res) => {
   try {
     const token = req.cookies.token;
+    console.log('Token from cookies:', token);
     if (!token) {
       return res.json({ 
         success: false, 
@@ -180,7 +181,8 @@ router.get('/check',auth, async (req, res) => {
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET || 'fallback-secret');
     const user = await User.findById(decoded.userId).select('-password -masterKey');
-    
+    console.log('Decoded token:', decoded);
+    console.log('User found:', user);
     if (!user) {
       return res.json({ 
         success: false, 
