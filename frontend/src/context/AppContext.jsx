@@ -92,7 +92,7 @@ export const AppContextProvider = (props) => {
 
   // Fetch vault items
   const fetchVaultItems = useCallback(async (masterKey) => {
-    if (!isLogged) return;
+    // if (!isLogged) return;
     
   
     setIsLoading(true);
